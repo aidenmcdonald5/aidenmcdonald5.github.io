@@ -1,0 +1,16 @@
+Put your images in this folder with exactly these names and they appear on the site automatically.
+
+HOME PAGE
+aiden.jpg               your photo (a square crop works best)
+logo-gt.png             optional logos; if missing, initials show instead
+logo-ymca.png
+logo-sigmanu.png
+logo-bigeasy.png
+
+INFILTRATOR             infiltrator-1.gif, infiltrator-2.png, infiltrator-3.png, infiltrator-4.png
+GBA GAME                gba-1.gif, gba-2.png, gba-3.png
+DOOM BULLETHELL         doom-1.gif, doom-2.png
+JOBCONNECT              jobconnect-1.png, jobconnect-2.png, jobconnect-3.png
+
+To use different file names or add more images, edit the "gallery" lines for that
+project near the top of index.html. Keep each GIF under about 5 MB.
