@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aiden McDonald | Game Designer</title>
+<meta name="description" content="Aiden McDonald is a game designer and Computational Media student at Georgia Tech.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script>
+/* =====================================================================
+   1. YOUR LINKS. Leave a link as "" and its button stays hidden.
+   ===================================================================== */
+const LINKS = {
+  email:    "aidenmc220@gmail.com",
+  linkedin: "https://www.linkedin.com/in/aidenmcdonald220",
+  resume:   "resume.pdf",   // put resume.pdf next to this file
+  itch:     "https://aidenmcdonald.itch.io/",             // e.g. https://yourname.itch.io
+  github:   ""
+};
+
+/* =====================================================================
+   2. YOUR PROJECTS. Each { ... } block is one card and one project page.
+      To add a project later, copy a whole block, paste it, and edit it.
+      Any text that starts with "TODO:" shows in a yellow box until you
+      replace it with your own writing.
+      Gallery images: put the files in the images folder with these names.
+   ===================================================================== */
+const PROJECTS = [
+  {
+    id: "infiltrator",
+    category: "Game Design",
+    title: "Infiltrator",
+    dates: "April 2026 - May 2026",
+    summary: "A browser-based investigative deduction game, inspired by WarGames, played on a CRT terminal.",
+    skills: ["p5.js", "JavaScript", "Game Design"],
+    features: [
+      "Six game screens driven by a scene-based state machine",
+      "CRT interface with phosphor glow, scanlines, and a typewriter boot sequence",
+      "Three clearance minigames that gate the accusation phase",
+      "Instructions rewritten after playtest feedback"
+    ],
+    links: [
+      { label: "Play in your browser", url: "" },   // Infiltrator's itch.io page
+      { label: "Design brief", url: "" },
+      { label: "View code", url: "" }
+    ],
+    gallery: [
+      { file: "infiltrator-1.gif", caption: "Gameplay" },
+      { file: "infiltrator-2.png", caption: "CRT terminal interface" },
+      { file: "infiltrator-3.png", caption: "Clearance minigame" },
+      { file: "infiltrator-4.png", caption: "Accusation phase" }
+    ],
+    overview: [
+      "Infiltrator is a browser-based investigative deduction game built in p5.js and released on itch.io. The player works at a retro CRT terminal, clears three security tasks, and then makes an accusation.",
+      "I wanted the player to feel the uncertainty and pressure of being under surveillance, and to sense that they are never fully in control. That comes from the game's inspiration, WarGames (1983). The terminal, the screen effects, and the retro feel are all there to carry that theme through both the look and the gameplay.",
+      "The game moves through six screens using a scene-based state machine. The terminal itself is fully rendered, with phosphor glow, scanlines, and a typewriter boot sequence. Before the accusation phase unlocks, the player has to clear three minigames: dragging identity tags into place, cross-connecting wires, and mapping continents on a globe.",
+      "After early players told me they were not sure what to do at each step, I rewrote the in-game instructions to make every part of the investigation clearer. With more time I would randomize the solution so the answer changes on every playthrough, which would make the game replayable."
+    ]
+  },
+  {
+    id: "reef-rescue",
+    category: "Game Design",
+    title: "Reef Rescue",
+    dates: "October 2026",
+    summary: "A Game Boy Advance game written in C where a crab collects pearls while dodging jellyfish.",
+    skills: ["C", "Game Boy Advance", "Mode 3"],
+    features: [
+      "Collect 8 pearls with 3 lives while dodging jellyfish",
+      "Five-state game loop: start, game, pause, win, lose",
+      "Object pooling with structs and arrays",
+      "Bitmap Mode 3 graphics drawn with DMA transfers",
+      "Hard caps on on-screen objects to prevent flicker"
+    ],
+    links: [ { label: "View code", url: "" } ],
+    gallery: [
+      { file: "gba-1.gif", caption: "Gameplay" },
+      { file: "gba-2.png", caption: "Start screen" },
+      { file: "gba-3.png", caption: "Win and lose screens" }
+    ],
+    overview: [
+      "In Reef Rescue, the player controls a crab (the orange square) and tries to collect 8 pearls without being hit by the jellyfish (the pink squares). The player starts with 3 lives and loses one each time a jellyfish hits. Lose all three and the game is over; collect all 8 pearls and you win.",
+      "I wrote the game in C for the Game Boy Advance as part of Media Device Architecture at Georgia Tech. It runs a five-state loop (start, game, pause, win, and lose) and uses object pooling with structs and arrays to manage everything on screen. All graphics are drawn in bitmap Mode 3, with DMA transfers to keep drawing fast on the hardware.",
+      "The hardware forced one design decision on me: limiting how many pearls and jellyfish can be on screen at once. I set a hard cap for each, because with any more the drawing slowed down and the screen flickered noticeably."
+    ]
+  },
+  {
+    id: "doom-bullethell",
+    category: "Game Design",
+    title: "“DOOM” BulletHell",
+    dates: "June 2024 - July 2024",
+    summary: "A 2D bullet-hell shooter with a DOOM-inspired look, enemy AI, and randomized spawns.",
+    skills: ["Python", "Pygame"],
+    features: [
+      "Three enemy types with linear and parabolic bullet paths",
+      "Randomized firing times and spawn locations",
+      "Designed the enemies, player character, background, and music",
+      "Built with a team of 3 developers over virtual meetings"
+    ],
+    links: [ { label: "View code", url: "" } ],
+    gallery: [
+      { file: "doom-1.gif", caption: "Gameplay" },
+      { file: "doom-2.png", caption: "Enemy types" }
+    ],
+    overview: [
+      "“DOOM” BulletHell is a 2D bullet-hell game built in Python and Pygame. It features dynamic enemy AI and complex bullet trajectories, with randomized spawn locations and multiple enemy types to raise the difficulty and make each run different.",
+      "Every enemy fires along a bullet path defined by a math formula. Two of the enemy types shoot in straight lines and the third shoots in a parabola. When and where each enemy fires is randomized, and the firing speed is tuned so the pace stays consistent.",
+      "I worked with a team of 3 developers. We met virtually to keep our code in sync and to make sure the art and gameplay held together under one DOOM-style look.",
+      "My main role was design: I created all of the enemies, the player character, the background, and the music, and I contributed to how the enemies behave and the bullet types they use. I was also responsible for communicating with our professor, setting up meetings, helping teammates when they needed it, and our final presentation."
+    ]
+  },
+  {
+    id: "jobconnect",
+    category: "Web Development",
+    title: "JobConnect",
+    dates: "September 2026 - Present",
+    summary: "A job platform for job seekers, recruiters, and administrators, built by a team of 5.",
+    skills: ["Django", "Python", "GitHub"],
+    features: [
+      "Administrator role for managing users and roles",
+      "Moderation tools to remove spam or abusive job posts",
+      "Design diagrams for the project",
+      "Team of 5, still in development"
+    ],
+    links: [ { label: "View code", url: "" } ],
+    gallery: [
+      { file: "jobconnect-1.png", caption: "Administrator screen" },
+      { file: "jobconnect-2.png", caption: "Job post moderation" },
+      { file: "jobconnect-3.png", caption: "Design diagram" }
+    ],
+    overview: [
+      "JobConnect is a Django job platform with separate experiences for job seekers, recruiters, and administrators. I am building it with four teammates in Objects and Design at Georgia Tech, and it is about halfway done.",
+      "My part so far is the Administrator role, which manages user accounts and role assignments, and the moderation tools that let administrators review and remove job posts that are spam or abusive. I also produced design diagrams for the project.",
+      "Next, we are adding many more features to the Job Seeker and Recruiter roles and extending the Administrator role. We will also add CSS styling so the site looks more polished and is easier to navigate."
+    ]
+  }
+];
+</script>
+
+<style>
+:root{
+  --grey:#EEECF4;       /* section tint */
+  --white:#FFFFFF;
+  --ink:#191630;
+  --text:#3F3B58;
+  --muted:#6B6787;
+  --indigo:#4B3F8F;
+  --indigo-deep:#2E2660;
+  --amber:#F2B33D;
+  --line:#DEDBEA;
+  --chip:#EEECF6;
+  --display:"Chakra Petch","Trebuchet MS",Verdana,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --shadow:0 1px 2px rgba(25,22,48,.05),0 6px 18px rgba(25,22,48,.05);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--white);color:var(--text);font-family:var(--body);font-size:1.0625rem;line-height:1.65}
+img{max-width:100%;display:block}
+a{color:var(--indigo)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3{font-family:var(--display);color:var(--ink);letter-spacing:-.01em}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;height:64px}
+.bar .name{font-family:var(--display);font-weight:700;font-size:1.15rem;color:var(--ink);text-decoration:none}
+.bar nav{display:flex;gap:1.5rem}
+.bar nav a{color:var(--text);text-decoration:none;font-weight:500;font-size:.98rem}
+.bar nav a:hover{color:var(--indigo)}
+
+/* sections */
+.band{padding:4.5rem 0}
+.band.tint{background:var(--grey)}
+.eyebrow{font-size:.82rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin:0 0 .4rem}
+.band h2{font-size:clamp(1.9rem,4vw,2.5rem);font-weight:700;margin:0 0 1.75rem;line-height:1.1}
+
+/* hero */
+.hero{background:var(--grey);padding:4rem 0 4.5rem}
+.hero .wrap{display:grid;grid-template-columns:1fr 290px;gap:3rem;align-items:center}
+.hero h1{font-size:clamp(2.7rem,7.5vw,4.9rem);font-weight:700;line-height:1;margin:0 0 1.5rem;letter-spacing:-.02em}
+.hero h1 span{display:block;color:var(--indigo)}
+.hero p{font-size:1.15rem;max-width:33em;margin:0 0 1.75rem}
+.buttons{display:flex;flex-wrap:wrap;gap:.6rem}
+.btn{display:inline-block;font-family:var(--body);font-weight:600;font-size:1rem;text-decoration:none;padding:.7rem 1.15rem;border-radius:12px;border:0;background:var(--indigo);color:#fff;cursor:pointer}
+.btn:hover{background:var(--indigo-deep)}
+.btn.small{padding:.55rem .95rem;font-size:.95rem;border-radius:10px}
+.photo{width:290px;height:290px;border-radius:50%;overflow:hidden;border:5px solid #fff;box-shadow:0 18px 40px rgba(25,22,48,.18);background:var(--ink)}
+.photo img{width:100%;height:100%;object-fit:cover}
+
+/* cards */
+.card{background:var(--white);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:1.5rem 1.6rem}
+.stack{display:grid;gap:1.25rem}
+.entry-head{display:flex;gap:1rem;align-items:flex-start}
+.logo{flex:none;width:54px;height:54px;border-radius:12px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;overflow:hidden;font-family:var(--display);font-weight:700;color:var(--indigo);font-size:.95rem}
+.logo img{width:100%;height:100%;object-fit:contain;padding:6px}
+.entry-head .t{flex:1;min-width:0}
+.entry-head h3{font-size:1.3rem;margin:0;line-height:1.2}
+.entry-head .sub{margin:.1rem 0 0}
+.entry-head .when{color:var(--muted);font-size:.93rem;margin:.1rem 0 0}
+.pill{flex:none;background:var(--chip);color:var(--ink);font-size:.9rem;font-weight:500;padding:.35rem .8rem;border-radius:999px;white-space:nowrap}
+.card ul{margin:1rem 0 0;padding-left:1.25rem}
+.card li{margin-bottom:.4rem}
+
+/* projects */
+.tools{display:grid;grid-template-columns:1fr 190px;gap:1rem;margin-bottom:1.75rem}
+.tools input,.tools select{font:inherit;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:12px;padding:.75rem 1rem;width:100%}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.pcard{display:flex;flex-direction:column}
+.pcard .cat{font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+.pcard h3{font-size:1.3rem;margin:0 0 .6rem;line-height:1.2}
+.pcard p.desc{margin:0 0 1rem;font-size:.98rem;flex:1}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1.1rem}
+.chip{background:var(--chip);color:var(--ink);font-size:.85rem;font-weight:500;padding:.25rem .7rem;border-radius:999px}
+.pcard .btn{align-self:flex-start}
+.none{color:var(--muted)}
+
+/* personal */
+.pers .cat{font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem}
+.pers p{margin:0;max-width:46em}
+
+/* project page */
+.back{display:inline-block;margin:1.5rem 0 1.25rem;font-weight:600;text-decoration:none}
+.phead{display:grid;grid-template-columns:1fr 300px;gap:2.5rem;align-items:start;padding-bottom:3rem}
+.phead h1{font-size:clamp(2.4rem,6.5vw,4.2rem);font-weight:700;line-height:1;margin:.2rem 0 .8rem;letter-spacing:-.02em}
+.phead .when{color:var(--muted);font-size:1.1rem;margin:0 0 1rem}
+.phead .lede{font-size:1.2rem;margin:0 0 1.1rem;max-width:34em}
+.phead .buttons{margin-top:.4rem}
+.features{background:var(--grey)}
+.features h3{font-size:1.25rem;margin:0}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.shot{padding:0;overflow:hidden;text-align:left;font:inherit;color:inherit;cursor:zoom-in}
+.shot .frame{aspect-ratio:16/10;background:var(--ink);display:grid;place-items:center}
+.shot .frame img{width:100%;height:100%;object-fit:cover}
+.shot .cap{padding:.85rem 1.1rem;font-size:.95rem;color:var(--text)}
+.empty{background:repeating-linear-gradient(0deg,#25213F 0 3px,#191630 3px 6px) !important;color:#CFCBDD;font-size:.85rem;text-align:center;padding:1rem;line-height:1.4;cursor:default}
+.empty b{display:block;color:var(--amber);font-family:var(--display);font-weight:600}
+.overview{padding:2.25rem 2.25rem 1.5rem}
+.overview h2{margin-bottom:1.25rem}
+.overview p{margin:0 0 1.25rem;max-width:48em}
+.todo{background:#FFF1C9;border-left:4px solid var(--amber);padding:.6rem .8rem;border-radius:0 8px 8px 0;color:var(--ink)}
+
+/* lightbox */
+.light{position:fixed;inset:0;z-index:50;background:rgba(25,22,48,.92);display:none;place-items:center;padding:1.5rem;cursor:zoom-out}
+.light.on{display:grid}
+.light img{max-height:88vh;border-radius:10px}
+.light p{color:#fff;text-align:center;margin:.75rem 0 0}
+
+footer{border-top:1px solid var(--line);padding:1.5rem 0 2.5rem;color:var(--muted);font-size:.95rem}
+[hidden]{display:none !important}
+
+@media (max-width:820px){
+  .hero .wrap,.phead{grid-template-columns:1fr}
+  .photo{width:200px;height:200px;order:-1}
+  .grid{grid-template-columns:1fr}
+  .gallery,.tools{grid-template-columns:1fr}
+  .entry-head{flex-wrap:wrap}
+  .bar nav{gap:.9rem}
+  .bar nav a{font-size:.9rem}
+  .band{padding:3rem 0}
+}
+@media (max-width:480px){.bar .name{font-size:1rem}.bar nav{gap:.65rem}}
+@media (min-width:821px) and (max-width:1000px){.grid{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+span.todo{border-left:0;border-radius:6px;padding:.1rem .4rem}
+</style>
+</head>
+<body>
+
+<header class="bar"><div class="wrap">
+  <a class="name" href="#top">Aiden McDonald</a>
+  <nav aria-label="Main">
+    <a href="#education">Education</a>
+    <a href="#work">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#personal">Personal</a>
+  </nav>
+</div></header>
+
+<!-- ============================== HOME ============================== -->
+<main id="home">
+  <section class="hero" id="top"><div class="wrap">
+    <div>
+      <h1>Hi, I'm <span>Aiden McDonald.</span></h1>
+      <p>I am a game designer and programmer studying Computational Media at Georgia Tech. I like building games from the idea all the way to something you can play, and I am looking for a game design internship for summer 2027.</p>
+      <div class="buttons">
+        <a class="btn" data-link="email">Contact Me</a>
+        <a class="btn" data-link="resume" target="_blank" rel="noopener">View Resume</a>
+        <a class="btn" data-link="linkedin" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" data-link="itch" target="_blank" rel="noopener">itch.io</a>
+        <a class="btn" data-link="github" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="photo"><img src="images/aiden.jpg" alt="Aiden McDonald" data-need="images/aiden.jpg"></div>
+  </div></section>
+
+  <section class="band" id="education"><div class="wrap">
+    <p class="eyebrow">Background</p>
+    <h2>Education</h2>
+    <div class="stack">
+      <article class="card">
+        <div class="entry-head">
+          <div class="logo"><img src="images/logo-gt.png" alt="" data-initials="GT"></div>
+          <div class="t">
+            <h3>Georgia Institute of Technology</h3>
+            <p class="sub">B.S. in Computational Media</p>
+            <p class="when">Expected May 2028</p>
+          </div>
+        </div>
+        <ul>
+          <li>Threads: Media and Games</li>
+          <li>Relevant Coursework: Data Structures and Algorithms, Object-Oriented Programming, Objects and Design, Computational Media, Media Device Architecture, Artificial Intelligence, Game Design</li>
+        </ul>
+      </article>
+    </div>
+  </div></section>
+
+  <section class="band tint" id="work"><div class="wrap">
+    <p class="eyebrow">Work</p>
+    <h2>Experience</h2>
+    <div class="stack">
+      <article class="card">
+        <div class="entry-head">
+          <div class="logo"><img src="images/logo-ymca.png" alt="" data-initials="Y"></div>
+          <div class="t"><h3>STEM Event Vendor</h3><p class="sub">YMCA</p></div>
+          <span class="pill">August 2024 - Present</span>
+        </div>
+        <ul>
+          <li>Organized and facilitated STEM-themed educational booths at 3 large-scale community events across Metro Atlanta, engaging 100-150 youth participants at each event</li>
+          <li>Designed hands-on STEM activities to promote collaborative problem solving and scientific curiosity in youth</li>
+          <li>Expanded community awareness of YMCA programs, increasing family engagement and membership inquiries</li>
+        </ul>
+      </article>
+      <article class="card">
+        <div class="entry-head">
+          <div class="logo"><img src="images/logo-sigmanu.png" alt="" data-initials="ΣΝ"></div>
+          <div class="t"><h3>Pool Manager</h3><p class="sub">Sigma Nu Fraternity</p></div>
+          <span class="pill">October 2025 - Present</span>
+        </div>
+        <ul>
+          <li>Managed and maintained a 20,000-gallon fraternity pool to ensure a safe, fully operational recreation facility</li>
+          <li>Led pool restoration and repair initiatives to improve long-term pool performance and reduce operational costs</li>
+        </ul>
+      </article>
+      <article class="card">
+        <div class="entry-head">
+          <div class="logo"><img src="images/logo-ymca.png" alt="" data-initials="Y"></div>
+          <div class="t"><h3>Membership Representative</h3><p class="sub">YMCA</p></div>
+          <span class="pill">August 2024 - July 2025</span>
+        </div>
+        <ul>
+          <li>Secured 5-7 new memberships weekly through targeted sales strategies and facility tours</li>
+          <li>Managed complex membership lifecycles including cancellations, holds, and tier changes</li>
+          <li>Resolved technical website and application issues for users, directly improving the digital customer experience</li>
+        </ul>
+      </article>
+      <article class="card">
+        <div class="entry-head">
+          <div class="logo"><img src="images/logo-bigeasy.png" alt="" data-initials="BE"></div>
+          <div class="t"><h3>Team Leader</h3><p class="sub">Big Easy Sno-Balls</p></div>
+          <span class="pill">April 2023 - January 2024</span>
+        </div>
+        <ul>
+          <li>Trained 4 new hires in customer service, cashier operations, and assistance protocols</li>
+          <li>Ran opening and closing procedures while managing the store independently, serving 60-100 customers daily</li>
+        </ul>
+      </article>
+    </div>
+  </div></section>
+
+  <section class="band" id="projects"><div class="wrap">
+    <p class="eyebrow">Portfolio</p>
+    <h2>Featured Projects</h2>
+    <div class="tools">
+      <input id="search" type="search" placeholder="Search projects by title, skill, or description..." aria-label="Search projects">
+      <select id="filter" aria-label="Filter by category"></select>
+    </div>
+    <div class="grid" id="grid"></div>
+    <p class="none" id="none" hidden>No projects match that search. Clear the search box to see them all.</p>
+  </div></section>
+
+  <section class="band tint" id="personal"><div class="wrap">
+    <p class="eyebrow">Personal</p>
+    <h2>More About Me</h2>
+    <div class="stack pers">
+      <article class="card">
+        <p class="cat">Games</p>
+        <p>I grew up playing Metal Gear Solid, Arkham Knight, Super Mario, and Sonic, and I fell in love with how they combine story, art, and gameplay into one experience. Early on I got curious about how these games came to be and why their developers made the choices they did. I still pick up on how a game's mechanics work whenever I play, and I love learning about all the moving pieces.</p>
+      </article>
+      <article class="card">
+        <p class="cat">Community</p>
+        <p>I am a member of Sigma Nu at Georgia Tech, where I manage and maintain the chapter's 20,000-gallon pool. I also run STEM booths for kids at YMCA community events around Metro Atlanta. I love giving back to my community however I can, and seeing people benefit from something I helped with brings me a lot of joy. I plan to keep making a positive impact wherever I am.</p>
+      </article>
+      <article class="card">
+        <p class="cat">Fitness</p>
+        <p>I look for any way to stay active. I grew up playing a variety of sports and still play whenever I get the chance. Basketball was my main sport in high school, and I love playing it to this day. I also enjoy watching just about any sport and cheering for my teams.</p>
+      </article>
+      <article class="card">
+        <p class="cat">Music</p>
+        <p>Music is a core part of my daily life, and I listen to all kinds of genres. I am currently learning to play guitar to deepen my understanding of music and to put that passion into something of my own.</p>
+      </article>
+    </div>
+  </div></section>
+</main>
+
+<!-- ========================== PROJECT PAGE ========================== -->
+<main id="project" hidden>
+  <div class="wrap">
+    <a class="back" href="#projects">&larr; Back to portfolio</a>
+    <div class="phead">
+      <div>
+        <p class="eyebrow" id="p-cat"></p>
+        <h1 id="p-title"></h1>
+        <p class="when" id="p-dates"></p>
+        <p class="lede" id="p-summary"></p>
+        <div class="chips" id="p-chips"></div>
+        <div class="buttons" id="p-links"></div>
+      </div>
+      <aside class="card features">
+        <h3>Key Features</h3>
+        <ul id="p-features"></ul>
+      </aside>
+    </div>
+  </div>
+  <section class="band tint"><div class="wrap">
+    <h2>Project Gallery</h2>
+    <div class="gallery" id="p-gallery"></div>
+  </div></section>
+  <section class="band"><div class="wrap">
+    <article class="card overview">
+      <h2>Overview</h2>
+      <div id="p-overview"></div>
+    </article>
+  </div></section>
+</main>
+
+<footer><div class="wrap">Aiden McDonald, Atlanta, GA. <a data-link="email" data-text="email"></a></div></footer>
+
+<div class="light" id="light" role="dialog" aria-label="Enlarged image"><div><img id="light-img" alt=""><p id="light-cap"></p></div></div>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+
+// Links: hide any button whose link is empty.
+document.querySelectorAll("[data-link]").forEach(a => {
+  const key = a.dataset.link, val = LINKS[key];
+  if (!val) { a.hidden = true; return; }
+  a.href = key === "email" ? "mailto:" + val : val;
+  if (a.dataset.text === "email") a.textContent = val;
+});
+
+// Missing images: logos fall back to initials, photos to a labelled placeholder.
+function watch(img) {
+  const swap = () => {
+    const box = img.parentElement;
+    if (img.dataset.initials) { box.textContent = img.dataset.initials; return; }
+    box.classList.add("empty");
+    box.innerHTML = "<div><b>Add " + esc(img.dataset.need) + "</b>" + esc(img.alt) + "</div>";
+  };
+  if (img.complete && img.naturalWidth === 0) swap(); else img.addEventListener("error", swap);
+}
+document.querySelectorAll("img[data-need],img[data-initials]").forEach(watch);
+
+// Project cards with search and category filter.
+const cats = [...new Set(PROJECTS.map(p => p.category))];
+$("filter").innerHTML = "<option>All</option>" + cats.map(c => "<option>" + esc(c) + "</option>").join("");
+function drawGrid() {
+  const q = $("search").value.trim().toLowerCase(), cat = $("filter").value;
+  const list = PROJECTS.filter(p =>
+    (cat === "All" || p.category === cat) &&
+    (!q || (p.title + " " + p.summary + " " + p.skills.join(" ") + " " + p.category).toLowerCase().includes(q)));
+  $("grid").innerHTML = list.map(p =>
+    '<article class="card pcard"><p class="cat">' + esc(p.category) + '</p><h3>' + esc(p.title) + '</h3>' +
+    '<p class="desc">' + esc(p.summary) + '</p><div class="chips">' +
+    p.skills.map(s => '<span class="chip">' + esc(s) + '</span>').join("") +
+    '</div><a class="btn small" href="#/project/' + p.id + '">View Project</a></article>').join("");
+  $("none").hidden = list.length > 0;
+}
+$("search").addEventListener("input", drawGrid);
+$("filter").addEventListener("change", drawGrid);
+drawGrid();
+
+// Project page.
+function drawProject(p) {
+  document.title = p.title + " | Aiden McDonald";
+  $("p-cat").textContent = p.category;
+  $("p-title").textContent = p.title;
+  $("p-dates").textContent = p.dates;
+  $("p-summary").textContent = p.summary;
+  $("p-chips").innerHTML = p.skills.map(s => '<span class="chip">' + esc(s) + '</span>').join("");
+  $("p-links").innerHTML = (p.links || []).filter(l => l.url).map(l =>
+    '<a class="btn small" target="_blank" rel="noopener" href="' + esc(l.url) + '">' + esc(l.label) + '</a>').join("");
+  $("p-features").innerHTML = p.features.map(f => "<li>" + esc(f) + "</li>").join("");
+  $("p-gallery").innerHTML = p.gallery.map(g =>
+    '<button class="card shot" type="button" data-cap="' + esc(g.caption) + '"><div class="frame"><img src="images/' + esc(g.file) +
+    '" alt="' + esc(g.caption) + '" data-need="images/' + esc(g.file) + '"></div><div class="cap">' + esc(g.caption) + '</div></button>').join("");
+  $("p-gallery").querySelectorAll("img").forEach(watch);
+  $("p-overview").innerHTML = p.overview.map(t =>
+    t.startsWith("TODO:") ? '<p class="todo">' + esc(t) + '</p>' : '<p>' + esc(t) + '</p>').join("");
+}
+
+// Click a gallery image to enlarge it.
+$("p-gallery").addEventListener("click", e => {
+  const shot = e.target.closest(".shot"), img = shot && shot.querySelector("img");
+  if (!img) return;
+  $("light-img").src = img.src; $("light-cap").textContent = shot.dataset.cap; $("light").classList.add("on");
+});
+$("light").addEventListener("click", () => $("light").classList.remove("on"));
+document.addEventListener("keydown", e => { if (e.key === "Escape") $("light").classList.remove("on"); });
+
+// Switch between the home page and a project page using the address after "#".
+function route() {
+  const h = location.hash, m = h.match(/^#\/project\/(.+)$/);
+  const p = m && PROJECTS.find(x => x.id === m[1]);
+  $("home").hidden = !!p; $("project").hidden = !p;
+  if (p) { drawProject(p); window.scrollTo(0, 0); }
+  else {
+    document.title = "Aiden McDonald | Game Designer";
+    const el = h.length > 1 && document.getElementById(h.slice(1));
+    if (el) el.scrollIntoView(); else window.scrollTo(0, 0);
+  }
+}
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
