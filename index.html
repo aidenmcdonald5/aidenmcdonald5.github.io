@@ -67,24 +67,26 @@ const PROJECTS = [
     title: "Reef Rescue",
     dates: "October 2026",
     summary: "A Game Boy Advance game written in C where a crab collects pearls while dodging jellyfish.",
-    skills: ["C", "Game Boy Advance", "Mode 3"],
+    skills: ["C", "Game Boy Advance", "Mode 4"],
     features: [
-      "Collect 8 pearls with 3 lives while dodging jellyfish",
-      "Five-state game loop: start, game, pause, win, lose",
-      "Object pooling with structs and arrays",
-      "Bitmap Mode 3 graphics drawn with DMA transfers",
-      "Hard caps on on-screen objects to prevent flicker"
+      "Collect 10 pearls with 3 lives while dodging jellyfish",
+      "Rebuilt from Mode 3 rectangles into Mode 4 image art",
+      "Scoreboard screen with a persistent high score",
+      "Six game states: start, game, pause, win, lose, scoreboard",
+      "Object pooling with structs and arrays, drawn with DMA"
     ],
     links: [ { label: "View code", url: "" } ],
     gallery: [
       { file: "gba-1.gif", caption: "Gameplay" },
       { file: "gba-2.png", caption: "Start screen" },
-      { file: "gba-3.png", caption: "Win and lose screens" }
+      { file: "gba-3.png", caption: "Win and lose screens" },
+      { file: "gba-4.png", caption: "Scoreboard with the saved high score" }
     ],
     overview: [
-      "In Reef Rescue, the player controls a crab (the orange square) and tries to collect 8 pearls without being hit by the jellyfish (the pink squares). The player starts with 3 lives and loses one each time a jellyfish hits. Lose all three and the game is over; collect all 8 pearls and you win.",
-      "I wrote the game in C for the Game Boy Advance as part of Media Device Architecture at Georgia Tech. It runs a five-state loop (start, game, pause, win, and lose) and uses object pooling with structs and arrays to manage everything on screen. All graphics are drawn in bitmap Mode 3, with DMA transfers to keep drawing fast on the hardware.",
-      "The hardware forced one design decision on me: limiting how many pearls and jellyfish can be on screen at once. I set a hard cap for each, because with any more the drawing slowed down and the screen flickered noticeably."
+      "In Reef Rescue, the player controls a crab and tries to collect 10 pearls without being hit by the jellyfish. The player starts with 3 lives and loses one each time a jellyfish hits. Lose all three and the game is over; collect all 10 pearls and you win.",
+      "I wrote the game in C for the Game Boy Advance as part of Media Device Architecture at Georgia Tech. The first version drew everything as colored rectangles in bitmap Mode 3. I then rebuilt it in Mode 4, which draws from a color palette, so the crab, pearls, jellyfish, and backgrounds are now full images.",
+      "The new version also adds a scoreboard screen that keeps a persistent high score, alongside the start, game, pause, win, and lose states. It still uses object pooling with structs and arrays to manage everything on screen, with DMA transfers to keep drawing fast on the hardware.",
+      "The hardware shaped the design from the start. In the first version I had to set a hard cap on how many pearls and jellyfish could be on screen at once, because with any more the drawing slowed down and the screen flickered noticeably."
     ]
   },
   {
