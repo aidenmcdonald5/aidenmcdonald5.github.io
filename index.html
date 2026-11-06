@@ -62,6 +62,36 @@ const PROJECTS = [
     ]
   },
   {
+    id: "stealth-horror",
+    category: "Game Design",
+    title: "Escape the House",
+    dates: "October 2026 - November 2026",
+    summary: "A top-down 3D stealth horror prototype in Unity where you sneak past creatures to escape an abandoned house.",
+    skills: ["Unity", "C#", "Game Design"],
+    features: [
+      "Noise-based stealth: sprinting is audible to nearby creatures",
+      "Sprint runs on a timer with a cooldown",
+      "Creatures see in a vision cone, investigate noises, and give up the chase",
+      "Find the hidden key to unlock the door outside",
+      "Scoped with a design doc, then playtested and presented"
+    ],
+    links: [
+      { label: "Play in your browser", url: "" },   // itch.io page for this game
+      { label: "Design statement", url: "" }        // e.g. docs/stealth-design-statement.pdf
+    ],
+    gallery: [
+      { file: "unity-1.gif", caption: "Sneaking past a creature" },
+      { file: "unity-2.png", caption: "Overhead view of the house" },
+      { file: "unity-3.png", caption: "Escaping with the key" }
+    ],
+    overview: [
+      "This is my first Unity project: a top-down 3D stealth horror game. The player wakes up trapped in a dark, abandoned house in the woods and has to find a hidden key and reach the door outside while creatures search for them. Getting caught restarts the run from the beginning.",
+      "The core mechanic is noise. Walking is quiet, but sprinting is audible to any creature nearby, and sprinting runs on a timer with a cooldown, so the player has to decide when speed is worth the risk. Creatures see in a cone in front of them, walk over to investigate sounds, and chase the player until they catch them or lose sight of them for long enough.",
+      "I started with a one-page design document that set the scope, including a cut list (no death animation, no more than two creatures, one floor, no inventory screen) and a definition of done: clear state screens, a game players understand without help, and most players escaping within three attempts. I built the stealth and noise mechanic as a digital mechanic prototype for a Georgia Tech game design class, playtested it with classmates, and presented it to the class.",
+      "Next, I plan to keep building it on my own time and add visual polish, such as real models, to bring out the horror atmosphere."
+    ]
+  },
+  {
     id: "reef-rescue",
     category: "Game Design",
     title: "Reef Rescue",
@@ -118,25 +148,27 @@ const PROJECTS = [
     id: "jobconnect",
     category: "Web Development",
     title: "JobConnect",
-    dates: "September 2026 - Present",
-    summary: "A job platform for job seekers, recruiters, and administrators, built by a team of 5.",
+    dates: "September 2026 - November 2026",
+    summary: "A finished Django job platform for job seekers, recruiters, and administrators, built by a team of 5.",
     skills: ["Django", "Python", "GitHub"],
     features: [
       "Administrator role for managing users and roles",
       "Moderation tools to remove spam or abusive job posts",
-      "Design diagrams for the project",
-      "Team of 5, still in development"
+      "CSV data export and review of reported users and posts",
+      "Recruiter office locations pinned on an interactive map",
+      "Design diagrams for the project; team of 5"
     ],
     links: [ { label: "View code", url: "" } ],
     gallery: [
       { file: "jobconnect-1.png", caption: "Administrator screen" },
       { file: "jobconnect-2.png", caption: "Job post moderation" },
-      { file: "jobconnect-3.png", caption: "Design diagram" }
+      { file: "jobconnect-3.png", caption: "Design diagram" },
+      { file: "jobconnect-4.png", caption: "Office location map" }
     ],
     overview: [
-      "JobConnect is a Django job platform with separate experiences for job seekers, recruiters, and administrators. I am building it with four teammates in Objects and Design at Georgia Tech, and it is about halfway done.",
-      "My part so far is the Administrator role, which manages user accounts and role assignments, and the moderation tools that let administrators review and remove job posts that are spam or abusive. I also produced design diagrams for the project.",
-      "Next, we are adding many more features to the Job Seeker and Recruiter roles and extending the Administrator role. We will also add CSS styling so the site looks more polished and is easier to navigate."
+      "JobConnect is a Django job platform with separate experiences for job seekers, recruiters, and administrators. I built it with four teammates in Objects and Design at Georgia Tech, and the project is now complete.",
+      "I built the administrator side of the platform. That includes the Administrator role, which manages user accounts and role assignments; moderation tools that let administrators remove job posts that are spam or abusive; a CSV export of the site's data; and a review queue for reports filed against users and job postings. I also finished a recruiter feature, started by a teammate, that pins a company's office location on an interactive map, and I produced design diagrams for the project.",
+      "We coordinated our work through GitHub, merging features through pull requests."
     ]
   }
 ];
@@ -276,9 +308,9 @@ span.todo{border-left:0;border-radius:6px;padding:.1rem .4rem}
 <header class="bar"><div class="wrap">
   <a class="name" href="#top">Aiden McDonald</a>
   <nav aria-label="Main">
+    <a href="#projects">Projects</a>
     <a href="#education">Education</a>
     <a href="#work">Work</a>
-    <a href="#projects">Projects</a>
     <a href="#personal">Personal</a>
   </nav>
 </div></header>
@@ -300,7 +332,18 @@ span.todo{border-left:0;border-radius:6px;padding:.1rem .4rem}
     <div class="photo"><img src="images/aiden.jpg" alt="Aiden McDonald" data-need="images/aiden.jpg"></div>
   </div></section>
 
-  <section class="band" id="education"><div class="wrap">
+  <section class="band" id="projects"><div class="wrap">
+    <p class="eyebrow">Portfolio</p>
+    <h2>Featured Projects</h2>
+    <div class="tools">
+      <input id="search" type="search" placeholder="Search projects by title, skill, or description..." aria-label="Search projects">
+      <select id="filter" aria-label="Filter by category"></select>
+    </div>
+    <div class="grid" id="grid"></div>
+    <p class="none" id="none" hidden>No projects match that search. Clear the search box to see them all.</p>
+  </div></section>
+
+  <section class="band tint" id="education"><div class="wrap">
     <p class="eyebrow">Background</p>
     <h2>Education</h2>
     <div class="stack">
@@ -321,7 +364,7 @@ span.todo{border-left:0;border-radius:6px;padding:.1rem .4rem}
     </div>
   </div></section>
 
-  <section class="band tint" id="work"><div class="wrap">
+  <section class="band" id="work"><div class="wrap">
     <p class="eyebrow">Work</p>
     <h2>Experience</h2>
     <div class="stack">
@@ -372,17 +415,6 @@ span.todo{border-left:0;border-radius:6px;padding:.1rem .4rem}
         </ul>
       </article>
     </div>
-  </div></section>
-
-  <section class="band" id="projects"><div class="wrap">
-    <p class="eyebrow">Portfolio</p>
-    <h2>Featured Projects</h2>
-    <div class="tools">
-      <input id="search" type="search" placeholder="Search projects by title, skill, or description..." aria-label="Search projects">
-      <select id="filter" aria-label="Filter by category"></select>
-    </div>
-    <div class="grid" id="grid"></div>
-    <p class="none" id="none" hidden>No projects match that search. Clear the search box to see them all.</p>
   </div></section>
 
   <section class="band tint" id="personal"><div class="wrap">
