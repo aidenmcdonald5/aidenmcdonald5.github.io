@@ -77,7 +77,7 @@ const PROJECTS = [
     ],
     links: [
       { label: "Play in your browser", url: "https://aidenmcdonald.itch.io/escape-the-house" },
-      { label: "Design statement", url: "" }        // e.g. docs/stealth-design-statement.pdf
+      { label: "Design statement", url: "docs/EscapeTheHouse_DesignStatement.pdf" }
     ],
     gallery: [
       { file: "unity-1.gif", caption: "Sneaking past a creature" },
@@ -87,8 +87,9 @@ const PROJECTS = [
     overview: [
       "This is my first Unity project: a top-down 3D stealth horror game. The player wakes up trapped in a dark, abandoned house in the woods and has to find a hidden key and reach the door outside while creatures search for them. Getting caught restarts the run from the beginning.",
       "The core mechanic is noise. Walking is quiet, but sprinting is audible to any creature nearby, and sprinting runs on a timer with a cooldown, so the player has to decide when speed is worth the risk. Creatures see in a cone in front of them, walk over to investigate sounds, and chase the player until they catch them or lose sight of them for long enough.",
-      "I started with a one-page design document that set the scope, including a cut list (no death animation, no more than two creatures, one floor, no inventory screen) and a definition of done: clear state screens, a game players understand without help, and most players escaping within three attempts. I built the stealth and noise mechanic as a digital mechanic prototype for a Georgia Tech game design class, playtested it with classmates, and presented it to the class.",
-      "Next, I plan to keep building it on my own time and add visual polish, such as real models, to bring out the horror atmosphere."
+      "I started with a one-page design document that set the scope, including a cut list (no death animation, no more than two creatures, one floor, no inventory screen) and a definition of done: clear state screens, a game players understand without help, and most players escaping within three attempts. I built the stealth and noise mechanic as a digital mechanic prototype for a Georgia Tech game design class and presented it to the class.",
+      "Playtesters worked only from an instruction card while I took notes, and two problems came up. Less experienced players found holding Shift while steering with WASD awkward, so they avoided sprinting for comfort instead of strategy. After a few escapes, players also memorized one safe route to the key and stopped hiding. I added arrow keys and Space as sprint, randomized the key between four spawn points, and gave the creature a random patrol, so no path is guaranteed safe anymore.",
+      "Next, I want to playtest the randomized build, guarantee a minimum distance between the key and the creature at the start, add hiding spots like closets, and add throwable objects so noise becomes a tool for luring the creature away. I also plan to add visual polish, such as real models, to bring out the horror atmosphere."
     ]
   },
   {
