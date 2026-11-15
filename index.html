@@ -25,8 +25,10 @@ const LINKS = {
 /* =====================================================================
    2. YOUR PROJECTS, in the order they appear.
       featured: true puts a project in the carousel at the top.
-      cover: the big image on the carousel, the project tile and the top
-             of its breakdown page.
+      cover: the big image or video on the carousel, the project tile and
+             the top of its breakdown page. Use .mp4 videos for gameplay:
+             they look sharper, play at the right speed and load faster.
+      pixelArt: true keeps pixel art sharp when it is scaled up.
       steps: the numbered breakdown. Each step has a title, paragraphs
              (text), an optional "Under the hood" list (tech), and
              optional images, each with a caption.
@@ -40,7 +42,7 @@ const PROJECTS = [
     category: "Game Design",
     title: "Escape the House",
     tagline: "A top-down stealth horror prototype in Unity, built around one rule: noise is a resource.",
-    cover: { file: "unity-1.gif", caption: "Playtest build: the player (blue) searches for the key while the creature’s vision cone sweeps the room." },
+    cover: { file: "unity-1.mp4", caption: "Playtest build: the player (blue) searches for the key while the creature’s vision cone sweeps the room." },
     facts: [
       ["Role", "Solo designer and developer"],
       ["Timeline", "October to November 2026"],
@@ -132,7 +134,7 @@ const PROJECTS = [
     category: "Game Design",
     title: "Infiltrator",
     tagline: "A browser deduction game, inspired by WarGames (1983), played on a simulated CRT terminal.",
-    cover: { file: "infiltrator-1.gif", caption: "Clearing a security task on the simulated CRT terminal." },
+    cover: { file: "infiltrator-1.mp4", caption: "Clearing a security task on the simulated CRT terminal." },
     facts: [
       ["Role", "Lead designer and developer"],
       ["Team", "2 people"],
@@ -192,10 +194,11 @@ const PROJECTS = [
   {
     id: "reef-rescue",
     featured: true,
+    pixelArt: true,
     category: "Game Design",
     title: "Reef Rescue",
     tagline: "A Game Boy Advance game in C: swim as a crab, collect 10 pearls and dodge the jellyfish.",
-    cover: { file: "gba-1.gif", caption: "Gameplay: the top bar tracks score, pearls collected, lives and the Tide Dash meter." },
+    cover: { file: "gba-1.mp4", caption: "Gameplay: the top bar tracks score, pearls collected, lives and the Tide Dash meter." },
     facts: [
       ["Role", "Solo designer and programmer"],
       ["Timeline", "October 2026"],
@@ -250,7 +253,7 @@ const PROJECTS = [
     category: "Game Design",
     title: "“DOOM” BulletHell",
     tagline: "A 2D bullet-hell shooter in Python and Pygame with a DOOM-inspired look.",
-    cover: { file: "doom-1.gif", caption: "Gameplay: dodging enemy fire over a red, hellish landscape." },
+    cover: { file: "doom-1.mp4", caption: "Gameplay: dodging enemy fire over a red, hellish landscape." },
     facts: [
       ["Role", "Designer: enemies, player, art and music"],
       ["Team", "3 developers"],
@@ -323,7 +326,8 @@ const PROJECTS = [
         ],
         techLabel: "What I built",
         images: [
-          { file: "jobconnect-2.png", caption: "Moderate Jobs: each post shows its status, with buttons to remove or deactivate it." }
+          { file: "jobconnect-2.png", caption: "Moderate Jobs: each post shows its status, with buttons to remove, restore, deactivate or reactivate it." },
+          { file: "jobconnect-5.png", caption: "Reports and Data Export: one-click CSV exports of users, jobs and applications, plus a review queue for reports on users and jobs." }
         ]
       },
       {
@@ -332,7 +336,7 @@ const PROJECTS = [
           "I took over a recruiter feature a teammate had started and finished it: it pins a company’s office location on an interactive map."
         ],
         images: [
-          { file: "jobconnect-4.png", caption: "A job post with the recruiter’s office pinned on the map." }
+          { file: "jobconnect-4.png", caption: "A job post with the recruiter’s office pinned on the map, plus buttons to report the job or the recruiter." }
         ]
       },
       {
@@ -406,7 +410,7 @@ h1,h2,h3{font-family:var(--display);color:var(--ink);letter-spacing:-.01em;line-
 .track::-webkit-scrollbar{display:none}
 .slide{flex:0 0 100%;scroll-snap-align:start;display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);background:var(--screen);color:#fff;text-decoration:none;min-height:400px}
 .slide .media{background:#000;display:grid;place-items:center;overflow:hidden}
-.slide .media img{width:100%;height:100%;object-fit:cover;max-height:500px}
+.slide .media img,.slide .media video{width:100%;height:100%;object-fit:cover;max-height:500px;display:block}
 .slide .info{padding:2rem 2rem 2.2rem;display:flex;flex-direction:column;justify-content:center;gap:.6rem}
 .slide .cat{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
 .slide h3{color:#fff;font-size:clamp(1.6rem,3vw,2.2rem);margin:0}
@@ -426,7 +430,7 @@ h1,h2,h3{font-family:var(--display);color:var(--ink);letter-spacing:-.01em;line-
 .tile{display:block;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;box-shadow:var(--shadow);transition:transform .15s ease}
 .tile:hover{transform:translateY(-3px)}
 .tile .media{aspect-ratio:16/9;background:var(--screen);overflow:hidden}
-.tile .media img{width:100%;height:100%;object-fit:cover}
+.tile .media img,.tile .media video{width:100%;height:100%;object-fit:cover;display:block}
 .tile .body{padding:.9rem 1rem 1.1rem}
 .tile .cat{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .tile h3{font-size:1.2rem;margin:.2rem 0 .3rem}
@@ -464,7 +468,8 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:1.4rem}
 .link{font-weight:600}
 figure{margin:0}
 .hero-fig{background:var(--screen);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:.5rem}
-.hero-fig img{width:100%;max-height:620px;object-fit:contain;margin:0 auto}
+.hero-fig img,.hero-fig video{width:100%;max-height:620px;object-fit:contain;margin:0 auto;display:block}
+.pixel .media img,.pixel .media video,.pixel .hero-fig img,.pixel .hero-fig video{image-rendering:pixelated}
 figcaption{font-size:.93rem;color:var(--muted);padding:.55rem .2rem 0}
 .steps{counter-reset:step;margin:2.6rem 0 1rem}
 .step{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:2rem;align-items:start;padding:1.8rem 0;border-top:1px solid var(--line)}
@@ -501,7 +506,7 @@ figcaption{font-size:.93rem;color:var(--muted);padding:.55rem .2rem 0}
 
 @media (max-width:900px){
   .slide{grid-template-columns:1fr;min-height:0}
-  .slide .media img{max-height:none;aspect-ratio:16/10}
+  .slide .media img,.slide .media video{max-height:none;aspect-ratio:16/10}
   .slide .info{padding:1.3rem 1.3rem 1.5rem}
   .grid{grid-template-columns:1fr 1fr}
   .about .cols{grid-template-columns:1fr;gap:1rem}
@@ -627,7 +632,9 @@ figcaption{font-size:.93rem;color:var(--muted);padding:.55rem .2rem 0}
 <script>
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
-const img = (file, alt, lazy) => '<img src="images/' + esc(file) + '" alt="' + esc(alt) + '"' + (lazy ? ' loading="lazy"' : '') + ' data-need="images/' + esc(file) + '">';
+const img = (file, alt, lazy) => /\.(mp4|webm)$/i.test(file)
+  ? '<video src="images/' + esc(file) + '" autoplay muted loop playsinline preload="' + (lazy ? 'metadata' : 'auto') + '" aria-label="' + esc(alt) + '"></video>'
+  : '<img src="images/' + esc(file) + '" alt="' + esc(alt) + '"' + (lazy ? ' loading="lazy"' : '') + ' data-need="images/' + esc(file) + '">';
 
 // Links: hide any whose value is empty.
 document.querySelectorAll("[data-link]").forEach(a => {
@@ -656,7 +663,7 @@ const href = p => "#/project/" + p.id;
 // Carousel of featured projects.
 const featured = PROJECTS.filter(p => p.featured);
 $("track").innerHTML = featured.map((p, i) =>
-  '<a class="slide" href="' + href(p) + '" aria-roledescription="slide" aria-label="' + (i + 1) + ' of ' + featured.length + ': ' + esc(p.title) + '">' +
+  '<a class="slide' + (p.pixelArt ? ' pixel' : '') + '" href="' + href(p) + '" aria-roledescription="slide" aria-label="' + (i + 1) + ' of ' + featured.length + ': ' + esc(p.title) + '">' +
   '<div class="media">' + img(p.cover.file, p.title + " gameplay", i > 0) + '</div>' +
   '<div class="info"><span class="cat">' + esc(p.category) + '</span><h3>' + esc(p.title) + '</h3>' +
   '<p>' + esc(p.tagline) + '</p><p class="cap">' + esc(p.cover.caption) + '</p>' +
@@ -675,7 +682,7 @@ mark();
 
 // Grid of every project.
 $("grid").innerHTML = PROJECTS.map(p =>
-  '<a class="tile" href="' + href(p) + '"><div class="media">' + img(p.cover.file, p.title, true) + '</div>' +
+  '<a class="tile' + (p.pixelArt ? ' pixel' : '') + '" href="' + href(p) + '"><div class="media">' + img(p.cover.file, p.title, true) + '</div>' +
   '<div class="body"><span class="cat">' + esc(p.category) + '</span><h3>' + esc(p.title) + '</h3><p>' + esc(p.tagline) + '</p></div></a>').join("");
 watch(document);
 
@@ -694,6 +701,7 @@ function drawProject(p) {
     '<a class="' + (i === 0 ? "btn" : "link") + '" target="_blank" rel="noopener" href="' + esc(l.url) + '">' + esc(l.label) + (i ? " &rarr;" : "") + '</a>').join("");
   $("p-links").hidden = !links.length;
   $("p-hero").innerHTML = img(p.cover.file, p.cover.caption, false);
+  $("project").classList.toggle("pixel", !!p.pixelArt);
   $("p-herocap").textContent = p.cover.caption;
   $("p-steps").innerHTML = p.steps.map(s => {
     const has = s.images && s.images.length;
